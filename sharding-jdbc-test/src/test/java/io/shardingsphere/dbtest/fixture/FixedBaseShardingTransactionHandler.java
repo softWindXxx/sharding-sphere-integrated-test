@@ -16,8 +16,8 @@ package io.shardingsphere.dbtest.fixture;/*
  */
 
 import io.shardingsphere.core.constant.transaction.TransactionType;
-import io.shardingsphere.core.event.transaction.ShardingTransactionEvent;
-import io.shardingsphere.spi.transaction.ShardingTransactionHandler;
+import io.shardingsphere.transaction.core.internal.context.ShardingTransactionContext;
+import io.shardingsphere.transaction.spi.ShardingTransactionHandler;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -41,7 +41,7 @@ public final class FixedBaseShardingTransactionHandler implements ShardingTransa
     }
     
     @Override
-    public void doInTransaction(final ShardingTransactionEvent event) {
+    public void doInTransaction(final ShardingTransactionContext event) {
         switch (event.getOperationType()) {
             case BEGIN:
                 INVOKES.put("begin", event);
