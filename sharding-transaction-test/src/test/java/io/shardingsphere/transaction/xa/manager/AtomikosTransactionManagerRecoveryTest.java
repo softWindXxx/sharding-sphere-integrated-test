@@ -21,7 +21,8 @@ import com.atomikos.jdbc.AtomikosSQLException;
 import io.shardingsphere.core.constant.DatabaseType;
 import io.shardingsphere.core.constant.PoolType;
 import io.shardingsphere.transaction.xa.convert.dialect.XADataSourceFactory;
-import io.shardingsphere.transaction.xa.convert.extractor.DataSourceParameterFactory;
+import io.shardingsphere.transaction.xa.convert.swap.DataSourceSwapper;
+import io.shardingsphere.transaction.xa.convert.swap.DataSourceSwapperRegistry;
 import io.shardingsphere.transaction.xa.fixture.DataSourceUtils;
 import io.shardingsphere.transaction.xa.fixture.ReflectiveUtil;
 import lombok.SneakyThrows;
@@ -39,7 +40,8 @@ public final class AtomikosTransactionManagerRecoveryTest extends TransactionMan
     @Override
     protected DataSource createXADataSource(final String dsName) {
         DataSource dataSource = DataSourceUtils.build(PoolType.HIKARI, DatabaseType.H2, dsName);
-        return getAtomikosTransactionManager().wrapDataSource(XADataSourceFactory.build(DatabaseType.H2), dsName, DataSourceParameterFactory.build(dataSource));
+        DataSourceSwapper swapper = DataSourceSwapperRegistry.getInstance().getSwapper(dataSource);
+        return getAtomikosTransactionManager().wrapDataSource(XADataSourceFactory.build(DatabaseType.H2), dsName, swapper.swap(dataSource));
     }
     
     @Override

@@ -17,7 +17,7 @@ package io.shardingsphere.dbtest.fixture;/*
 
 import com.zaxxer.hikari.HikariDataSource;
 import io.shardingsphere.core.constant.DatabaseType;
-import io.shardingsphere.spi.transaction.xa.DataSourceMapConverter;
+import io.shardingsphere.transaction.spi.xa.DataSourceMapConverter;
 
 import javax.sql.DataSource;
 import java.util.HashMap;

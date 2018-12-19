@@ -22,7 +22,7 @@ import com.atomikos.icatch.config.Configuration;
 import com.atomikos.icatch.imp.CoordinatorImp;
 import com.atomikos.icatch.jta.UserTransactionManager;
 import io.shardingsphere.core.constant.transaction.TransactionOperationType;
-import io.shardingsphere.core.event.transaction.xa.XATransactionEvent;
+import io.shardingsphere.transaction.core.internal.context.XATransactionContext;
 import io.shardingsphere.transaction.xa.fixture.ReflectiveUtil;
 import lombok.Getter;
 import lombok.SneakyThrows;
@@ -56,11 +56,11 @@ public abstract class TransactionManagerRecoveryTest {
     
     private Map<String, DataSource> xaDataSourceMap = createXADataSourceMap();
     
-    private XATransactionEvent beginEvent = new XATransactionEvent(TransactionOperationType.BEGIN);
+    private XATransactionContext beginEvent = new XATransactionContext(TransactionOperationType.BEGIN);
     
-    private XATransactionEvent commitEvent = new XATransactionEvent(TransactionOperationType.COMMIT);
+    private XATransactionContext commitEvent = new XATransactionContext(TransactionOperationType.COMMIT);
     
-    private XATransactionEvent rollbackEvent = new XATransactionEvent(TransactionOperationType.ROLLBACK);
+    private XATransactionContext rollbackEvent = new XATransactionContext(TransactionOperationType.ROLLBACK);
     
     @Before
     public void setup() {

@@ -23,7 +23,6 @@ import org.junit.runners.Suite.SuiteClasses;
 
 @RunWith(Suite.class)
 @SuiteClasses({
-        DBCP2TransactionManagerRecoveryTest.class,
         AtomikosTransactionManagerRecoveryTest.class
 })
 public final class AllManagerTests {
