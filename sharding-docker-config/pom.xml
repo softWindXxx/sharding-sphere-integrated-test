@@ -44,7 +44,7 @@
                                 <goal>up</goal>
                             </goals>
                             <configuration>
-                                <composeFile>${root.basedir}/sharding-docker-config/resources/docker-compose-mysql.yml</composeFile>
+                                <composeFile>${root.basedir}/sharding-docker-config/resources/docker-compose.yml</composeFile>
                                 <detachedMode>true</detachedMode>
                             </configuration>
                         </execution>
@@ -55,7 +55,7 @@
                                 <goal>down</goal>
                             </goals>
                             <configuration>
-                                <composeFile>${root.basedir}/sharding-docker-config/resources/docker-compose-mysql.yml</composeFile>
+                                <composeFile>${root.basedir}/sharding-docker-config/resources/docker-compose.yml</composeFile>
                                 <removeVolumes>true</removeVolumes>
                             </configuration>
                         </execution>
