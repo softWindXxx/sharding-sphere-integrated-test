@@ -40,6 +40,7 @@
     <modules>
         <module>sharding-transaction-test</module>
         <module>sharding-jdbc-test</module>
+        <module>sharding-docker-config</module>
     </modules>
     
     <dependencyManagement>
