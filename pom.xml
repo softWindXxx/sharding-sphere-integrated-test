@@ -35,15 +35,24 @@
         <maven-resources-plugin.version>2.7</maven-resources-plugin.version>
         <maven-jar-plugin.version>2.6</maven-jar-plugin.version>
         <maven-source-plugin.version>2.4</maven-source-plugin.version>
+        <docker-compose-maven-plugin.version>2.3.0</docker-compose-maven-plugin.version>
+        <mixin-maven-plugin.version>0.1-alpha-39</mixin-maven-plugin.version>
+        <directory-maven-plugin.version>0.1</directory-maven-plugin.version>
     </properties>
     
     <modules>
         <module>sharding-transaction-test</module>
         <module>sharding-jdbc-test</module>
+        <module>sharding-docker-config</module>
     </modules>
     
     <dependencyManagement>
         <dependencies>
+            <dependency>
+                <groupId>io.shardingsphere</groupId>
+                <artifactId>sharding-docker-config</artifactId>
+                <version>${project.parent.version}</version>
+            </dependency>
             <dependency>
                 <groupId>io.shardingsphere</groupId>
                 <artifactId>sharding-jdbc-core</artifactId>
@@ -180,7 +189,6 @@
                 <version>${mssql.version}</version>
                 <scope>test</scope>
             </dependency>
-            
         </dependencies>
     </dependencyManagement>
     
@@ -219,6 +227,21 @@
                         </goals>
                     </execution>
                 </executions>
+            </plugin>
+            <plugin>
+                <groupId>com.github.odavid.maven.plugins</groupId>
+                <artifactId>mixin-maven-plugin</artifactId>
+                <version>${mixin-maven-plugin.version}</version>
+                <extensions>true</extensions>
+                <configuration>
+                    <mixins>
+                        <mixin>
+                            <groupId>io.shardingsphere</groupId>
+                            <artifactId>sharding-docker-config</artifactId>
+                            <version>${project.version}</version>
+                        </mixin>
+                    </mixins>
+                </configuration>
             </plugin>
         </plugins>
     </build>
